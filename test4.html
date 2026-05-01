@@ -1,0 +1,1068 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creative Workshop Hub</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #fff8ec;
+      color: #2c1810;
+    }
+
+    .skip-link {
+      display: none;
+    }
+
+    header {
+      background: #fff8ec;
+      border-bottom: 3px solid #2c1810;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .announcement {
+      background: #ff6b35;
+      color: #2c1810;
+      text-align: center;
+      padding: 9px 20px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .nav-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 46px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .brand-mark {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #2c1810;
+      color: #fff8ec;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .brand-text strong {
+      display: block;
+      font-size: 22px;
+      letter-spacing: 1px;
+    }
+
+    .brand-text span {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      color: #7c4a35;
+    }
+
+    nav a {
+      color: #2c1810;
+      text-decoration: none;
+      margin-left: 22px;
+      font-weight: bold;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      background: #2c1810;
+      color: #fff8ec;
+      padding: 8px;
+    }
+
+    .hero {
+      min-height: 620px;
+      background: linear-gradient(105deg, rgba(255, 248, 236, 0.92) 0%, rgba(255, 248, 236, 0.72) 48%, rgba(255, 107, 53, 0.45) 100%), url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1600&q=80');
+      background-size: cover;
+      background-position: center;
+      padding: 88px 46px;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-inner {
+      max-width: 760px;
+    }
+
+    .kicker {
+      display: inline-block;
+      background: #2c1810;
+      color: #fff8ec;
+      padding: 8px 13px;
+      border-radius: 999px;
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      font-size: 68px;
+      line-height: 0.95;
+      margin: 22px 0;
+      color: #2c1810;
+    }
+
+    .hero p {
+      font-family: Arial, sans-serif;
+      font-size: 20px;
+      line-height: 1.6;
+      color: #4d2d20;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 14px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 2px solid #2c1810;
+      padding: 13px 20px;
+      border-radius: 0;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      display: inline-block;
+    }
+
+    .btn-dark {
+      background: #2c1810;
+      color: #fff8ec;
+    }
+
+    .btn-orange {
+      background: #ff6b35;
+      color: #2c1810;
+    }
+
+    .btn-light {
+      background: #fff8ec;
+      color: #2c1810;
+    }
+
+    .section {
+      padding: 74px 46px;
+    }
+
+    .section h2 {
+      font-size: 44px;
+      margin: 0 0 12px;
+      color: #2c1810;
+    }
+
+    .section > p {
+      font-family: Arial, sans-serif;
+      color: #5c4034;
+      font-size: 17px;
+      line-height: 1.6;
+      max-width: 820px;
+    }
+
+    .cream {
+      background: #fff8ec;
+    }
+
+    .peach {
+      background: #ffe4d4;
+    }
+
+    .dark {
+      background: #2c1810;
+      color: #fff8ec;
+    }
+
+    .dark h2, .dark h3 {
+      color: #fff8ec;
+    }
+
+    .dark p {
+      color: #e8d5c8;
+    }
+
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 3px solid #2c1810;
+      border-bottom: 3px solid #2c1810;
+      background: #ffcf5c;
+    }
+
+    .stat {
+      padding: 30px;
+      border-right: 3px solid #2c1810;
+      text-align: center;
+    }
+
+    .stat:last-child {
+      border-right: none;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 42px;
+      color: #2c1810;
+    }
+
+    .stat span {
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 34px;
+      align-items: start;
+    }
+
+    .poster-card {
+      background: #fff8ec;
+      border: 3px solid #2c1810;
+      box-shadow: 10px 10px 0 #2c1810;
+      padding: 28px;
+    }
+
+    .poster-card h3 {
+      font-size: 30px;
+      margin-top: 0;
+    }
+
+    .low-contrast {
+      background: #fff8ec;
+      color: #f3e6d9;
+      padding: 14px;
+      margin-top: 18px;
+      font-family: Arial, sans-serif;
+    }
+
+    .track-filters {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr auto auto;
+      gap: 12px;
+      margin: 26px 0;
+      background: #2c1810;
+      padding: 18px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #2c1810;
+      background: #fff8ec;
+      color: #2c1810;
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+    }
+
+    textarea {
+      min-height: 120px;
+    }
+
+    .workshop-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .workshop-card {
+      background: #fff8ec;
+      border: 3px solid #2c1810;
+      padding: 24px;
+      box-shadow: 7px 7px 0 #ff6b35;
+      min-height: 310px;
+    }
+
+    .workshop-card h3 {
+      font-size: 26px;
+      margin-top: 0;
+    }
+
+    .workshop-card p {
+      font-family: Arial, sans-serif;
+      line-height: 1.55;
+      color: #4d2d20;
+    }
+
+    .label {
+      display: inline-block;
+      background: #2c1810;
+      color: #fff8ec;
+      padding: 5px 8px;
+      margin: 4px 4px 8px 0;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 18px;
+      margin-top: 26px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 140px 1fr 160px;
+      gap: 20px;
+      background: #fff8ec;
+      border: 3px solid #2c1810;
+      padding: 20px;
+      align-items: center;
+    }
+
+    .time {
+      font-size: 26px;
+      font-weight: bold;
+      color: #ff6b35;
+    }
+
+    .speaker-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+      margin-top: 28px;
+    }
+
+    .speaker-card {
+      background: #fff8ec;
+      color: #2c1810;
+      border: 3px solid #2c1810;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .speaker-card img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      border: 3px solid #2c1810;
+      margin-bottom: 14px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 28px;
+    }
+
+    .price-card {
+      background: #fff8ec;
+      color: #2c1810;
+      border: 3px solid #2c1810;
+      padding: 28px;
+      box-shadow: 8px 8px 0 #ffcf5c;
+    }
+
+    .price {
+      font-size: 44px;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+
+    .form-panel {
+      background: #fff8ec;
+      border: 3px solid #2c1810;
+      padding: 30px;
+      box-shadow: 10px 10px 0 #2c1810;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .alert {
+      display: none;
+      margin-top: 18px;
+      padding: 15px;
+      background: #d1fae5;
+      border: 2px solid #065f46;
+      color: #064e3b;
+      font-family: Arial, sans-serif;
+    }
+
+    .faq-item {
+      background: #fff8ec;
+      border: 3px solid #2c1810;
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+
+    .faq-title {
+      font-weight: bold;
+      font-family: Arial, sans-serif;
+      color: #2c1810;
+      cursor: pointer;
+    }
+
+    .faq-answer {
+      display: none;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin-top: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff8ec;
+      margin-top: 24px;
+      border: 3px solid #2c1810;
+    }
+
+    th, td {
+      border: 2px solid #2c1810;
+      padding: 14px;
+      text-align: left;
+      font-family: Arial, sans-serif;
+    }
+
+    th {
+      background: #2c1810;
+      color: #fff8ec;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 26px;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      border: 3px solid #2c1810;
+    }
+
+    .fake-link {
+      color: #a93200;
+      text-decoration: underline;
+      cursor: pointer;
+      font-family: Arial, sans-serif;
+    }
+
+    .modal-bg {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(44, 24, 16, 0.75);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+    }
+
+    .modal {
+      background: #fff8ec;
+      border: 4px solid #2c1810;
+      padding: 30px;
+      max-width: 650px;
+      box-shadow: 14px 14px 0 #ff6b35;
+    }
+
+    footer {
+      background: #2c1810;
+      color: #fff8ec;
+      padding: 46px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    footer a {
+      display: block;
+      color: #ffcf5c;
+      margin: 8px 0;
+      text-decoration: none;
+      font-family: Arial, sans-serif;
+    }
+
+    @media (max-width: 1000px) {
+      .nav-wrap,
+      .two-col {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+      }
+
+      nav a {
+        display: block;
+        margin: 9px 0;
+      }
+
+      .stats-strip,
+      .track-filters,
+      .workshop-grid,
+      .timeline-item,
+      .speaker-grid,
+      .pricing-grid,
+      .form-grid,
+      .gallery,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 44px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- WCAG error 1: Skip link is hidden with display:none, so keyboard users cannot access it. -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header>
+    <div class="announcement">
+      Early bird registration closes soon — only 35 seats left!
+    </div>
+
+    <div class="nav-wrap">
+      <div class="brand">
+        <!-- WCAG error 2: Logo mark has no accessible text alternative. -->
+        <div class="brand-mark">W</div>
+        <div class="brand-text">
+          <strong>Creative Workshop Hub</strong>
+          <span>Hands-on learning for students and young professionals</span>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#about">About</a>
+        <a href="#workshops">Workshops</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#speakers">Speakers</a>
+        <a href="#tickets">Tickets</a>
+        <a href="#register">Register</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="kicker">May 2026 · Bratislava</span>
+      <h1>Design, Code & Create Workshop Weekend</h1>
+      <p>
+        Join a practical two-day event with creative sessions about web design,
+        accessibility, frontend development, AI tools, teamwork and digital portfolios.
+      </p>
+      <div class="btn-row">
+        <a href="#register" class="btn btn-dark">Register now</a>
+        <button class="btn btn-orange" onclick="openModal('Event overview', 'This workshop weekend includes lectures, practice sessions, mentoring, networking and project presentations.')">View overview</button>
+        <!-- WCAG error 3: Vague link text. -->
+        <a href="#tickets" class="btn btn-light">Click here</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats-strip">
+    <div class="stat"><strong>2</strong><span>Days</span></div>
+    <div class="stat"><strong>12</strong><span>Sessions</span></div>
+    <div class="stat"><strong>8</strong><span>Mentors</span></div>
+    <div class="stat"><strong>120</strong><span>Seats</span></div>
+  </div>
+
+  <main id="main">
+    <section id="about" class="section cream">
+      <div class="two-col">
+        <div>
+          <h2>About the workshop</h2>
+          <p>
+            Creative Workshop Hub is a demo event website for students who want to improve practical
+            skills in web design, accessibility testing, content creation and presentation.
+          </p>
+          <p>
+            The website contains many interactive parts: filters, cards, programme timeline,
+            registration form, pricing selection, FAQ, modal windows and dynamic messages.
+          </p>
+
+          <!-- WCAG error 4: Very low contrast text. -->
+          <div class="low-contrast">
+            Important information: participants should bring their own laptop and charger.
+          </div>
+        </div>
+
+        <div class="poster-card">
+          <h3>What you will learn</h3>
+          <ul>
+            <li>How to plan and design a small web project.</li>
+            <li>How to test accessibility problems in real interfaces.</li>
+            <li>How to prepare a portfolio presentation.</li>
+            <li>How to work in a small creative team.</li>
+          </ul>
+          <button class="btn btn-orange" onclick="showChecklist()">Show preparation checklist</button>
+          <div id="checklist" class="alert"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="workshops" class="section peach">
+      <h2>Workshop tracks</h2>
+      <p>Filter workshops by topic, level and day. This section simulates a real event programme catalogue.</p>
+
+      <div class="track-filters">
+        <!-- WCAG error 5: Search input has no label. -->
+        <input id="searchWorkshop" type="text" placeholder="Search workshop">
+        <!-- WCAG error 6: Select has no label. -->
+        <select id="levelFilter">
+          <option value="all">All levels</option>
+          <option value="beginner">Beginner</option>
+          <option value="intermediate">Intermediate</option>
+          <option value="advanced">Advanced</option>
+        </select>
+        <!-- WCAG error 7: Select has no label. -->
+        <select id="dayFilter">
+          <option value="all">All days</option>
+          <option value="day1">Day 1</option>
+          <option value="day2">Day 2</option>
+        </select>
+        <button class="btn btn-orange" onclick="filterWorkshops()">Filter</button>
+        <button class="btn btn-light" onclick="resetWorkshops()">Reset</button>
+      </div>
+
+      <div class="workshop-grid" id="workshopGrid">
+        <article class="workshop-card" data-level="beginner" data-day="day1" data-name="html css portfolio web design">
+          <h3>Build Your First Portfolio</h3>
+          <span class="label">Beginner</span><span class="label">Day 1</span>
+          <p>Create a simple personal portfolio website with HTML and CSS.</p>
+          <button class="btn btn-dark" onclick="selectWorkshop('Build Your First Portfolio')">Select</button>
+        </article>
+        <article class="workshop-card" data-level="intermediate" data-day="day1" data-name="accessibility wcag testing audit">
+          <h3>Accessibility Audit Basics</h3>
+          <span class="label">Intermediate</span><span class="label">Day 1</span>
+          <p>Learn how to find common WCAG problems in websites and forms.</p>
+          <button class="btn btn-dark" onclick="selectWorkshop('Accessibility Audit Basics')">Select</button>
+        </article>
+        <article class="workshop-card" data-level="advanced" data-day="day2" data-name="javascript interactive components frontend">
+          <h3>Interactive Components</h3>
+          <span class="label">Advanced</span><span class="label">Day 2</span>
+          <p>Build modals, filters, dynamic cards and simple state-based UI.</p>
+          <button class="btn btn-dark" onclick="selectWorkshop('Interactive Components')">Select</button>
+        </article>
+        <article class="workshop-card" data-level="beginner" data-day="day2" data-name="figma ux wireframes design">
+          <h3>Figma Wireframes</h3>
+          <span class="label">Beginner</span><span class="label">Day 2</span>
+          <p>Sketch and prepare a basic wireframe for a web application.</p>
+          <button class="btn btn-dark" onclick="selectWorkshop('Figma Wireframes')">Select</button>
+        </article>
+        <article class="workshop-card" data-level="intermediate" data-day="day2" data-name="ai tools content writing presentation">
+          <h3>AI Tools for Creative Work</h3>
+          <span class="label">Intermediate</span><span class="label">Day 2</span>
+          <p>Use AI tools to support research, writing and presentation preparation.</p>
+          <button class="btn btn-dark" onclick="selectWorkshop('AI Tools for Creative Work')">Select</button>
+        </article>
+        <article class="workshop-card" data-level="advanced" data-day="day1" data-name="team project sprint prototype">
+          <h3>Prototype Sprint</h3>
+          <span class="label">Advanced</span><span class="label">Day 1</span>
+          <p>Work in teams and create a clickable prototype in a short time.</p>
+          <button class="btn btn-dark" onclick="selectWorkshop('Prototype Sprint')">Select</button>
+        </article>
+      </div>
+    </section>
+
+    <section id="schedule" class="section cream">
+      <h2>Event schedule</h2>
+      <p>The timeline shows the main programme blocks for the workshop weekend.</p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="time">09:00</div>
+          <div>
+            <h3>Registration and coffee</h3>
+            <p>Participants receive badges, materials and workshop group information.</p>
+          </div>
+          <button class="btn btn-light" onclick="openModal('Registration', 'Registration desk opens at 09:00 near the main entrance.')">Details</button>
+        </div>
+        <div class="timeline-item">
+          <div class="time">10:00</div>
+          <div>
+            <h3>Opening keynote</h3>
+            <p>Introduction to creative digital skills and practical learning.</p>
+          </div>
+          <button class="btn btn-light" onclick="openModal('Opening keynote', 'The keynote introduces the goals of the workshop weekend.')">Details</button>
+        </div>
+        <div class="timeline-item">
+          <div class="time">11:30</div>
+          <div>
+            <h3>Parallel workshop sessions</h3>
+            <p>Participants join selected tracks with mentors.</p>
+          </div>
+          <button class="btn btn-light" onclick="openModal('Workshop sessions', 'Parallel sessions are organized in rooms A, B and C.')">Details</button>
+        </div>
+        <div class="timeline-item">
+          <div class="time">15:00</div>
+          <div>
+            <h3>Team project sprint</h3>
+            <p>Teams create a small prototype and prepare a short presentation.</p>
+          </div>
+          <button class="btn btn-light" onclick="openModal('Project sprint', 'Teams will present their results at the end of the day.')">Details</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="speakers" class="section dark">
+      <h2>Speakers and mentors</h2>
+      <p>Meet mentors from design, frontend development, accessibility and digital communication.</p>
+
+      <div class="speaker-grid">
+        <article class="speaker-card">
+          <!-- WCAG error 8: Image missing alt attribute. -->
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80">
+          <h3>Eva Novak</h3>
+          <p>UX designer</p>
+          <button class="btn btn-orange" onclick="openModal('Eva Novak', 'Eva leads the Figma wireframing workshop.')">Bio</button>
+        </article>
+        <article class="speaker-card">
+          <!-- WCAG error 9: Meaningless alt text. -->
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80" alt="photo">
+          <h3>Martin Smith</h3>
+          <p>Frontend developer</p>
+          <button class="btn btn-orange" onclick="openModal('Martin Smith', 'Martin teaches interactive components in JavaScript.')">Bio</button>
+        </article>
+        <article class="speaker-card">
+          <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=800&q=80" alt="image">
+          <h3>Lucia Green</h3>
+          <p>Accessibility consultant</p>
+          <button class="btn btn-orange" onclick="openModal('Lucia Green', 'Lucia explains WCAG testing and common accessibility mistakes.')">Bio</button>
+        </article>
+        <article class="speaker-card">
+          <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=800&q=80" alt="person">
+          <h3>Adam Brown</h3>
+          <p>Creative strategist</p>
+          <button class="btn btn-orange" onclick="openModal('Adam Brown', 'Adam works with students on creative project presentations.')">Bio</button>
+        </article>
+      </div>
+    </section>
+
+    <section id="tickets" class="section peach">
+      <h2>Tickets</h2>
+      <p>Choose a ticket type. Prices are fictional and used only for this demo website.</p>
+
+      <div class="pricing-grid">
+        <div class="price-card">
+          <h3>Student</h3>
+          <div class="price">€19</div>
+          <p>Access to all beginner sessions and networking area.</p>
+          <button class="btn btn-dark" onclick="chooseTicket('Student')">Choose</button>
+        </div>
+        <div class="price-card">
+          <h3>Full pass</h3>
+          <div class="price">€49</div>
+          <p>Access to all sessions, mentoring and project sprint.</p>
+          <button class="btn btn-dark" onclick="chooseTicket('Full pass')">Choose</button>
+        </div>
+        <div class="price-card">
+          <h3>Team pass</h3>
+          <div class="price">€99</div>
+          <p>For groups of up to four people working on one project.</p>
+          <button class="btn btn-dark" onclick="chooseTicket('Team pass')">Choose</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="register" class="section cream">
+      <h2>Registration form</h2>
+      <p>Fill in this demo form to register for the workshop.</p>
+
+      <form class="form-panel" onsubmit="submitRegistration(event)">
+        <div class="form-grid">
+          <div>
+            <!-- WCAG error 10: Visual label is not connected to input with for/id. -->
+            <p>First name</p>
+            <input id="firstName" type="text">
+          </div>
+          <div>
+            <p>Last name</p>
+            <input id="lastName" type="text">
+          </div>
+          <div>
+            <!-- WCAG error 11: Required field is marked only with placeholder/star. -->
+            <input id="email" type="email" placeholder="Email *">
+          </div>
+          <div>
+            <p>Ticket type</p>
+            <select id="ticketType">
+              <option>Student</option>
+              <option>Full pass</option>
+              <option>Team pass</option>
+            </select>
+          </div>
+          <div>
+            <p>Selected workshop</p>
+            <input id="selectedWorkshop" type="text" placeholder="Choose workshop above">
+          </div>
+          <div>
+            <p>Experience level</p>
+            <select id="experience">
+              <option>Beginner</option>
+              <option>Intermediate</option>
+              <option>Advanced</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="margin-top:18px;">
+          <p>Why do you want to join?</p>
+          <textarea id="motivation"></textarea>
+        </div>
+
+        <div style="margin-top:18px;">
+          <!-- WCAG error 12: Checkbox has no label element. -->
+          <input id="agree" type="checkbox" style="width:auto;"> I agree with workshop terms and photo/video recording.
+        </div>
+
+        <div style="margin-top:22px;">
+          <button class="btn btn-orange" type="submit">Submit registration</button>
+          <button class="btn btn-light" type="button" onclick="clearForm()">Clear</button>
+        </div>
+
+        <!-- WCAG error 13: Error message has no role=alert and is not connected to invalid inputs. -->
+        <div id="formMessage" class="alert"></div>
+      </form>
+    </section>
+
+    <section class="section peach">
+      <h2>Venue and gallery</h2>
+      <p>The event is hosted in a creative campus space with rooms for lectures, teamwork and mentoring.</p>
+
+      <div class="gallery">
+        <!-- WCAG error 14: Gallery images use vague or meaningless alt text. -->
+        <img src="https://images.unsplash.com/photo-1517502884422-41eaead166d4?auto=format&fit=crop&w=800&q=80" alt="picture">
+        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80" alt="image">
+        <img src="https://images.unsplash.com/photo-1559223607-b4d0555ae227?auto=format&fit=crop&w=800&q=80" alt="photo">
+        <img src="https://images.unsplash.com/photo-1558403194-611308249627?auto=format&fit=crop&w=800&q=80" alt="room">
+      </div>
+
+      <table>
+        <!-- WCAG error 15: Table has no caption. -->
+        <tr>
+          <th>Room</th>
+          <th>Capacity</th>
+          <th>Track</th>
+          <th>Equipment</th>
+        </tr>
+        <tr>
+          <td>Studio A</td>
+          <td>40</td>
+          <td>Design</td>
+          <td>Projector, whiteboards</td>
+        </tr>
+        <tr>
+          <td>Lab B</td>
+          <td>30</td>
+          <td>Frontend</td>
+          <td>Computers, monitors</td>
+        </tr>
+        <tr>
+          <td>Hall C</td>
+          <td>80</td>
+          <td>Keynotes</td>
+          <td>Audio system, stage</td>
+        </tr>
+      </table>
+    </section>
+
+    <section class="section cream">
+      <h2>FAQ</h2>
+
+      <!-- WCAG error 16: FAQ controls are clickable divs, not buttons. -->
+      <div class="faq-item">
+        <div class="faq-title" onclick="toggleFaq(this)">Do I need previous coding experience?</div>
+        <div class="faq-answer">No, several sessions are prepared for beginners.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-title" onclick="toggleFaq(this)">Should I bring my laptop?</div>
+        <div class="faq-answer">Yes, participants should bring a laptop and charger.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-title" onclick="toggleFaq(this)">Will I receive a certificate?</div>
+        <div class="faq-answer">Demo certificates are generated for participants who attend both days.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-title" onclick="toggleFaq(this)">Can I change my selected workshop?</div>
+        <div class="faq-answer">You can request a change at the registration desk.</div>
+      </div>
+
+      <!-- WCAG error 17: Fake link is a span, not a real link or button. -->
+      <span class="fake-link" onclick="showContactHelp()">Open contact support</span>
+      <div id="contactHelp" class="alert">Contact us at workshop@example.com with your registration number.</div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h3>Creative Workshop Hub</h3>
+        <p>Demo workshop website for accessibility testing.</p>
+      </div>
+      <div>
+        <h3>Event</h3>
+        <a href="#about">About</a>
+        <a href="#workshops">Workshops</a>
+        <a href="#schedule">Schedule</a>
+      </div>
+      <div>
+        <h3>Registration</h3>
+        <a href="#tickets">Tickets</a>
+        <a href="#register">Register</a>
+        <!-- WCAG error 18: Vague link destination. -->
+        <a href="#">More</a>
+      </div>
+      <div>
+        <h3>Legal</h3>
+        <!-- WCAG error 19: Repeated vague link text. -->
+        <a href="#">Read more</a>
+        <a href="#">Read more</a>
+        <a href="#">Read more</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WCAG error 20: Modal has no role="dialog", no aria-modal and no focus management. -->
+  <div class="modal-bg" id="modalBg">
+    <div class="modal">
+      <h2 id="modalTitle">Modal title</h2>
+      <p id="modalText">Modal text</p>
+      <button class="btn btn-dark" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    function openModal(title, text) {
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalText').innerText = text;
+      document.getElementById('modalBg').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('modalBg').style.display = 'none';
+    }
+
+    function showChecklist() {
+      const box = document.getElementById('checklist');
+      box.style.display = 'block';
+      box.innerText = 'Bring laptop, charger, notebook, student ID and your portfolio idea.';
+    }
+
+    function filterWorkshops() {
+      const search = document.getElementById('searchWorkshop').value.toLowerCase();
+      const level = document.getElementById('levelFilter').value;
+      const day = document.getElementById('dayFilter').value;
+      const cards = document.querySelectorAll('.workshop-card');
+
+      cards.forEach(card => {
+        const matchesSearch = card.dataset.name.includes(search);
+        const matchesLevel = level === 'all' || card.dataset.level === level;
+        const matchesDay = day === 'all' || card.dataset.day === day;
+        card.style.display = matchesSearch && matchesLevel && matchesDay ? 'block' : 'none';
+      });
+    }
+
+    function resetWorkshops() {
+      document.getElementById('searchWorkshop').value = '';
+      document.getElementById('levelFilter').value = 'all';
+      document.getElementById('dayFilter').value = 'all';
+      document.querySelectorAll('.workshop-card').forEach(card => card.style.display = 'block');
+    }
+
+    function selectWorkshop(name) {
+      document.getElementById('selectedWorkshop').value = name;
+      document.getElementById('register').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function chooseTicket(ticket) {
+      document.getElementById('ticketType').value = ticket;
+      document.getElementById('register').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function submitRegistration(event) {
+      event.preventDefault();
+      const firstName = document.getElementById('firstName').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('formMessage');
+
+      if (firstName.length < 2 || email.length < 5) {
+        message.style.display = 'block';
+        message.style.background = '#fee2e2';
+        message.style.borderColor = '#dc2626';
+        message.style.color = '#7f1d1d';
+        // WCAG error 21: Error is shown visually only and not announced by assistive technology.
+        message.innerText = 'Please complete required information.';
+        return;
+      }
+
+      message.style.display = 'block';
+      message.style.background = '#d1fae5';
+      message.style.borderColor = '#065f46';
+      message.style.color = '#064e3b';
+      message.innerText = 'Your demo registration was submitted successfully.';
+    }
+
+    function clearForm() {
+      document.querySelectorAll('#register input, #register textarea').forEach(item => {
+        if (item.type === 'checkbox') {
+          item.checked = false;
+        } else {
+          item.value = '';
+        }
+      });
+    }
+
+    function toggleFaq(element) {
+      const answer = element.nextElementSibling;
+      answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function showContactHelp() {
+      document.getElementById('contactHelp').style.display = 'block';
+    }
+
+    // WCAG error 22: Escape closes the modal, but focus is not returned to the trigger element.
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeModal();
+      }
+    });
+
+    // WCAG error 23: Dynamic messages do not use aria-live regions.
+    // WCAG error 24: Some buttons open important content without accessible state information.
+    // WCAG error 25: Several form fields use placeholder text instead of persistent labels.
+    // WCAG error 26: Page uses English content only, but language switch links suggest unavailable languages.
+    // WCAG error 27: Focus styles are not clearly customized for keyboard navigation.
+    // WCAG error 28: Some colour combinations depend on colour alone to show tags and categories.
+  </script>
+</body>
+</html>

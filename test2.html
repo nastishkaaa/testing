@@ -1,0 +1,1016 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusTime Scheduler</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      background: #111827;
+      color: #e5e7eb;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      background: #020617;
+      border-right: 1px solid #1f2937;
+      padding: 26px 20px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .brand {
+      margin-bottom: 34px;
+    }
+
+    .brand-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: #a855f7;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+
+    .brand h1 {
+      font-size: 22px;
+      margin: 0;
+      color: white;
+    }
+
+    .brand p {
+      color: #9ca3af;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+
+    .side-nav a {
+      display: block;
+      color: #cbd5e1;
+      text-decoration: none;
+      padding: 13px 12px;
+      border-radius: 10px;
+      margin-bottom: 7px;
+      font-size: 14px;
+    }
+
+    .side-nav a:hover {
+      background: #1f2937;
+      color: white;
+    }
+
+    .side-box {
+      background: #1f2937;
+      border-radius: 16px;
+      padding: 18px;
+      margin-top: 28px;
+    }
+
+    .side-box h3 {
+      margin-top: 0;
+      color: #f9fafb;
+    }
+
+    .side-box p {
+      color: #d1d5db;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .main {
+      min-width: 0;
+    }
+
+    .topbar {
+      background: #111827;
+      border-bottom: 1px solid #374151;
+      padding: 18px 34px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .topbar-title strong {
+      display: block;
+      color: white;
+      font-size: 18px;
+    }
+
+    .topbar-title span {
+      color: #9ca3af;
+      font-size: 13px;
+    }
+
+    .topbar-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      border: none;
+      padding: 11px 16px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 14px;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-purple {
+      background: #a855f7;
+      color: white;
+    }
+
+    .btn-green {
+      background: #10b981;
+      color: #052e1c;
+    }
+
+    .btn-gray {
+      background: #374151;
+      color: white;
+    }
+
+    .btn-red {
+      background: #ef4444;
+      color: white;
+    }
+
+    .hero-dashboard {
+      padding: 34px;
+      background: radial-gradient(circle at top left, #4c1d95, #111827 42%);
+    }
+
+    .hero-card {
+      background: rgba(17, 24, 39, 0.82);
+      border: 1px solid #374151;
+      border-radius: 24px;
+      padding: 34px;
+      display: grid;
+      grid-template-columns: 1.3fr 0.7fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .hero-card h2 {
+      font-size: 42px;
+      margin: 0 0 14px;
+      color: #ffffff;
+    }
+
+    .hero-card p {
+      color: #cbd5e1;
+      font-size: 17px;
+      line-height: 1.65;
+      max-width: 760px;
+    }
+
+    .today-tile {
+      background: #020617;
+      border: 1px solid #374151;
+      border-radius: 20px;
+      padding: 24px;
+    }
+
+    .today-tile .time {
+      font-size: 42px;
+      color: #a7f3d0;
+      font-weight: bold;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .stat {
+      background: #1f2937;
+      border: 1px solid #374151;
+      border-radius: 18px;
+      padding: 22px;
+    }
+
+    .stat h3 {
+      margin: 0;
+      font-size: 14px;
+      color: #9ca3af;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 34px;
+      margin-top: 10px;
+      color: white;
+    }
+
+    .content {
+      padding: 34px;
+    }
+
+    .section {
+      margin-bottom: 48px;
+    }
+
+    .section h2 {
+      color: #ffffff;
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .section p {
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+
+    .filter-panel {
+      background: #1f2937;
+      border: 1px solid #374151;
+      border-radius: 18px;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr auto auto;
+      gap: 12px;
+      margin: 22px 0;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #4b5563;
+      background: #020617;
+      color: #e5e7eb;
+      font-size: 14px;
+    }
+
+    textarea {
+      min-height: 115px;
+    }
+
+    .schedule-list {
+      display: grid;
+      gap: 15px;
+    }
+
+    .lesson-card {
+      background: #1f2937;
+      border: 1px solid #374151;
+      border-radius: 18px;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 110px 1fr 160px 140px;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .lesson-time {
+      color: #a7f3d0;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .lesson-card h3 {
+      margin: 0 0 6px;
+      color: white;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #312e81;
+      color: #ddd6fe;
+      font-size: 12px;
+      margin-right: 6px;
+    }
+
+    .calendar-board {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .day-column {
+      background: #1f2937;
+      border: 1px solid #374151;
+      border-radius: 18px;
+      padding: 16px;
+      min-height: 350px;
+    }
+
+    .day-column h3 {
+      margin-top: 0;
+      color: white;
+      border-bottom: 1px solid #374151;
+      padding-bottom: 12px;
+    }
+
+    .mini-lesson {
+      background: #020617;
+      border-left: 5px solid #a855f7;
+      border-radius: 10px;
+      padding: 11px;
+      margin-bottom: 10px;
+      color: #e5e7eb;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .info-card {
+      background: #1f2937;
+      border: 1px solid #374151;
+      border-radius: 18px;
+      padding: 20px;
+    }
+
+    .info-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 14px;
+      margin-bottom: 12px;
+      filter: saturate(0.8);
+    }
+
+    .info-card h3 {
+      color: white;
+      margin: 0 0 8px;
+    }
+
+    .form-panel {
+      background: #1f2937;
+      border: 1px solid #374151;
+      border-radius: 20px;
+      padding: 24px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .alert {
+      display: none;
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 10px;
+      background: #064e3b;
+      color: #d1fae5;
+      border: 1px solid #10b981;
+    }
+
+    .low-contrast {
+      color: #252a33;
+      background: #1f2937;
+      padding: 12px;
+      border-radius: 10px;
+      margin-top: 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #1f2937;
+      border-radius: 14px;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #374151;
+      padding: 13px;
+      text-align: left;
+    }
+
+    th {
+      background: #020617;
+      color: white;
+    }
+
+    .fake-link {
+      color: #c084fc;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .modal-bg {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 50;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal {
+      background: #111827;
+      border: 1px solid #4b5563;
+      border-radius: 20px;
+      padding: 28px;
+      max-width: 620px;
+      color: #e5e7eb;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+    }
+
+    .hidden-skip {
+      display: none;
+    }
+
+    footer {
+      border-top: 1px solid #374151;
+      background: #020617;
+      padding: 34px;
+      color: #9ca3af;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    footer h3 {
+      color: white;
+    }
+
+    footer a {
+      color: #c084fc;
+      display: block;
+      margin: 8px 0;
+      text-decoration: none;
+    }
+
+    @media (max-width: 1050px) {
+      body {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: static;
+        height: auto;
+      }
+
+      .hero-card,
+      .stats-grid,
+      .filter-panel,
+      .lesson-card,
+      .calendar-board,
+      .grid-3,
+      .form-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- WCAG error 1: Skip link is hidden with display:none and cannot be used by keyboard users. -->
+  <a href="#main" class="hidden-skip">Skip to main content</a>
+
+  <aside class="sidebar">
+    <div class="brand">
+      <!-- WCAG error 2: Visual logo does not have accessible text alternative. -->
+      <div class="brand-icon">CT</div>
+      <h1>CampusTime</h1>
+      <p>Dark university dashboard for timetable, rooms and academic schedule management.</p>
+    </div>
+
+    <nav class="side-nav">
+      <a href="#overview">Overview</a>
+      <a href="#schedule">My lessons</a>
+      <a href="#calendar">Week board</a>
+      <a href="#rooms">Rooms</a>
+      <a href="#teachers">Teachers</a>
+      <a href="#changes">Changes</a>
+      <a href="#request">Request</a>
+    </nav>
+
+    <div class="side-box">
+      <h3>Current week</h3>
+      <p>Week 7 · Summer semester · Group AI-1</p>
+      <button class="btn btn-green" onclick="showWeekInfo()">Show week info</button>
+      <p id="weekInfo"></p>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar-title">
+        <strong>Personal timetable dashboard</strong>
+        <span>Friday · academic schedule system</span>
+      </div>
+      <div class="topbar-actions">
+        <!-- WCAG error 3: Language links have no clear active state and do not really change language. -->
+        <a href="#" class="btn btn-gray">EN</a>
+        <a href="#" class="btn btn-gray">SK</a>
+        <button class="btn btn-purple" onclick="openHelpModal()">Help</button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section id="overview" class="hero-dashboard">
+        <div class="hero-card">
+          <div>
+            <h2>Your timetable, rooms and changes in one dashboard</h2>
+            <p>
+              This demo website represents a university timetable system with lessons, calendar board,
+              room reservations, teacher office hours, announcements and schedule change requests.
+            </p>
+            <div>
+              <a href="#schedule" class="btn btn-purple">Open lessons</a>
+              <!-- WCAG error 4: Vague link text. -->
+              <a href="#changes" class="btn btn-gray">Click here</a>
+            </div>
+            <!-- WCAG error 5: Very low contrast text. -->
+            <div class="low-contrast">Important information about changed lessons is displayed here.</div>
+          </div>
+
+          <div class="today-tile">
+            <p>Next lesson</p>
+            <div class="time">10:40</div>
+            <h3>Databases</h3>
+            <p>Room C-108 · Seminar · AI-2</p>
+            <button class="btn btn-green" onclick="openLesson('Databases', 'Monday 10:40', 'C-108')">View details</button>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat"><h3>Lessons this week</h3><strong>18</strong></div>
+          <div class="stat"><h3>Room changes</h3><strong>3</strong></div>
+          <div class="stat"><h3>Teacher notices</h3><strong>7</strong></div>
+          <div class="stat"><h3>Free rooms now</h3><strong>12</strong></div>
+        </div>
+      </section>
+
+      <div class="content">
+        <section id="schedule" class="section">
+          <h2>My lessons</h2>
+          <p>Filter your lessons by course name, day or study group.</p>
+
+          <div class="filter-panel">
+            <!-- WCAG error 6: Input has no visible label connected to it. -->
+            <input id="courseSearch" type="text" placeholder="Search course">
+            <!-- WCAG error 7: Select has no label. -->
+            <select id="dayFilter">
+              <option value="all">All days</option>
+              <option value="monday">Monday</option>
+              <option value="tuesday">Tuesday</option>
+              <option value="wednesday">Wednesday</option>
+              <option value="thursday">Thursday</option>
+              <option value="friday">Friday</option>
+            </select>
+            <!-- WCAG error 8: Select has no label. -->
+            <select id="groupFilter">
+              <option value="all">All groups</option>
+              <option value="AI-1">AI-1</option>
+              <option value="AI-2">AI-2</option>
+              <option value="DS-1">DS-1</option>
+            </select>
+            <button class="btn btn-purple" onclick="filterSchedule()">Filter</button>
+            <button class="btn btn-red" onclick="resetSchedule()">Reset</button>
+          </div>
+
+          <div class="schedule-list" id="scheduleList">
+            <article class="lesson-card" data-day="monday" data-group="AI-1" data-course="web technologies html css javascript">
+              <div class="lesson-time">08:50</div>
+              <div><h3>Web Technologies</h3><span class="tag">Lecture</span><span class="tag">Dr. Novak</span></div>
+              <div>Room B-214</div>
+              <button class="btn btn-gray" onclick="openLesson('Web Technologies', 'Monday 08:50', 'B-214')">Details</button>
+            </article>
+            <article class="lesson-card" data-day="monday" data-group="AI-2" data-course="databases sql relational model">
+              <div class="lesson-time">10:40</div>
+              <div><h3>Databases</h3><span class="tag">Seminar</span><span class="tag">Mgr. Hlinka</span></div>
+              <div>Room C-108</div>
+              <button class="btn btn-gray" onclick="openLesson('Databases', 'Monday 10:40', 'C-108')">Details</button>
+            </article>
+            <article class="lesson-card" data-day="tuesday" data-group="DS-1" data-course="statistics probability data analysis">
+              <div class="lesson-time">09:40</div>
+              <div><h3>Statistics</h3><span class="tag">Lecture</span><span class="tag">Prof. Kral</span></div>
+              <div>Room A-301</div>
+              <button class="btn btn-gray" onclick="openLesson('Statistics', 'Tuesday 09:40', 'A-301')">Details</button>
+            </article>
+            <article class="lesson-card" data-day="wednesday" data-group="AI-1" data-course="software engineering uml testing project">
+              <div class="lesson-time">12:30</div>
+              <div><h3>Software Engineering</h3><span class="tag">Project</span><span class="tag">Ing. Barta</span></div>
+              <div>Room D-022</div>
+              <button class="btn btn-gray" onclick="openLesson('Software Engineering', 'Wednesday 12:30', 'D-022')">Details</button>
+            </article>
+            <article class="lesson-card" data-day="thursday" data-group="AI-2" data-course="computer networks internet protocols">
+              <div class="lesson-time">14:20</div>
+              <div><h3>Computer Networks</h3><span class="tag">Lab</span><span class="tag">Dr. Simko</span></div>
+              <div>Lab 3</div>
+              <button class="btn btn-gray" onclick="openLesson('Computer Networks', 'Thursday 14:20', 'Lab 3')">Details</button>
+            </article>
+            <article class="lesson-card" data-day="friday" data-group="DS-1" data-course="machine learning python classification">
+              <div class="lesson-time">08:00</div>
+              <div><h3>Machine Learning</h3><span class="tag">Seminar</span><span class="tag">Dr. Kovacova</span></div>
+              <div>Room B-110</div>
+              <button class="btn btn-gray" onclick="openLesson('Machine Learning', 'Friday 08:00', 'B-110')">Details</button>
+            </article>
+          </div>
+        </section>
+
+        <section id="calendar" class="section">
+          <h2>Week board</h2>
+          <p>A board-style view of lessons for each weekday.</p>
+
+          <div class="calendar-board">
+            <div class="day-column">
+              <h3>Monday</h3>
+              <!-- WCAG error 9: Clickable div is not keyboard accessible. -->
+              <div class="mini-lesson" onclick="openLesson('Web Technologies', 'Monday 08:50', 'B-214')">08:50 Web Technologies</div>
+              <div class="mini-lesson" onclick="openLesson('Databases', 'Monday 10:40', 'C-108')">10:40 Databases</div>
+            </div>
+            <div class="day-column">
+              <h3>Tuesday</h3>
+              <div class="mini-lesson" onclick="openLesson('Statistics', 'Tuesday 09:40', 'A-301')">09:40 Statistics</div>
+              <div class="mini-lesson" onclick="openLesson('Academic Writing', 'Tuesday 13:20', 'E-204')">13:20 Academic Writing</div>
+            </div>
+            <div class="day-column">
+              <h3>Wednesday</h3>
+              <div class="mini-lesson" onclick="openLesson('Software Engineering', 'Wednesday 12:30', 'D-022')">12:30 Software Engineering</div>
+            </div>
+            <div class="day-column">
+              <h3>Thursday</h3>
+              <div class="mini-lesson" onclick="openLesson('Computer Networks', 'Thursday 14:20', 'Lab 3')">14:20 Computer Networks</div>
+              <div class="mini-lesson" onclick="openLesson('English B2', 'Thursday 16:10', 'A-115')">16:10 English B2</div>
+            </div>
+            <div class="day-column">
+              <h3>Friday</h3>
+              <div class="mini-lesson" onclick="openLesson('Machine Learning', 'Friday 08:00', 'B-110')">08:00 Machine Learning</div>
+            </div>
+          </div>
+        </section>
+
+        <section id="rooms" class="section">
+          <h2>Rooms</h2>
+          <p>Check classroom capacity and equipment.</p>
+          <div class="grid-3">
+            <article class="info-card">
+              <!-- WCAG error 10: Image has meaningless alt text. -->
+              <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80" alt="image">
+              <h3>B-214</h3>
+              <p>Large lecture room with projector and 80 seats.</p>
+              <button class="btn btn-purple" onclick="bookRoom('B-214')">Reserve</button>
+            </article>
+            <article class="info-card">
+              <!-- WCAG error 11: Image missing alt attribute. -->
+              <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80">
+              <h3>Lab 3</h3>
+              <p>Computer laboratory with Linux workstations.</p>
+              <button class="btn btn-purple" onclick="bookRoom('Lab 3')">Reserve</button>
+            </article>
+            <article class="info-card">
+              <img src="https://images.unsplash.com/photo-1607013407627-6ee814329547?auto=format&fit=crop&w=800&q=80" alt="photo">
+              <h3>A-301</h3>
+              <p>Big lecture hall with recording system.</p>
+              <button class="btn btn-purple" onclick="bookRoom('A-301')">Reserve</button>
+            </article>
+          </div>
+          <div id="roomMessage" class="alert"></div>
+        </section>
+
+        <section id="teachers" class="section">
+          <h2>Teachers</h2>
+          <div class="grid-3">
+            <article class="info-card">
+              <h3>Dr. Peter Novak</h3>
+              <p>Web Technologies, UX, Programming</p>
+              <button class="btn btn-gray" onclick="showTeacher('Dr. Peter Novak')">Office hours</button>
+            </article>
+            <article class="info-card">
+              <h3>Dr. Maria Kovacova</h3>
+              <p>Machine Learning, Data Mining</p>
+              <button class="btn btn-gray" onclick="showTeacher('Dr. Maria Kovacova')">Office hours</button>
+            </article>
+            <article class="info-card">
+              <h3>Prof. Tomas Kral</h3>
+              <p>Statistics and Research Methods</p>
+              <button class="btn btn-gray" onclick="showTeacher('Prof. Tomas Kral')">Office hours</button>
+            </article>
+          </div>
+          <div id="teacherInfo" class="alert"></div>
+        </section>
+
+        <section id="changes" class="section">
+          <h2>Changed lessons</h2>
+          <p>Recent room and time changes.</p>
+          <table>
+            <!-- WCAG error 12: Table has no caption. -->
+            <tr>
+              <th>Course</th>
+              <th>Original room</th>
+              <th>New room</th>
+              <th>Reason</th>
+            </tr>
+            <tr>
+              <td>Databases</td>
+              <td>C-108</td>
+              <td>C-112</td>
+              <td>Technical issue</td>
+            </tr>
+            <tr>
+              <td>Computer Networks</td>
+              <td>Lab 2</td>
+              <td>Lab 3</td>
+              <td>Equipment requirement</td>
+            </tr>
+            <tr>
+              <td>Academic Writing</td>
+              <td>E-204</td>
+              <td>Online</td>
+              <td>Teacher conference</td>
+            </tr>
+          </table>
+        </section>
+
+        <section id="request" class="section">
+          <h2>Request timetable change</h2>
+          <p>Send a request to change seminar group, report collision or ask about room availability.</p>
+
+          <form class="form-panel" onsubmit="submitRequest(event)">
+            <div class="form-grid">
+              <div>
+                <!-- WCAG error 13: Visual label is not connected to the input. -->
+                <p>First name</p>
+                <input id="firstName" type="text">
+              </div>
+              <div>
+                <p>Last name</p>
+                <input id="lastName" type="text">
+              </div>
+              <div>
+                <!-- WCAG error 14: Required field is communicated only through placeholder/star. -->
+                <input id="studentEmail" type="email" placeholder="University email *">
+              </div>
+              <div>
+                <!-- WCAG error 15: Select has no proper label element. -->
+                <select id="studentGroup">
+                  <option>AI-1</option>
+                  <option>AI-2</option>
+                  <option>DS-1</option>
+                  <option>WEB-1</option>
+                </select>
+              </div>
+              <div>
+                <p>Request type</p>
+                <select id="requestType">
+                  <option>Change seminar group</option>
+                  <option>Report schedule collision</option>
+                  <option>Ask about classroom</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div>
+                <p>Course</p>
+                <input id="requestCourse" type="text" placeholder="Example: Databases">
+              </div>
+            </div>
+
+            <div style="margin-top:16px;">
+              <p>Message</p>
+              <textarea id="requestMessage"></textarea>
+            </div>
+
+            <div style="margin-top:16px;">
+              <!-- WCAG error 16: Checkbox has no label element. -->
+              <input id="privacy" type="checkbox" style="width:auto;"> I agree with timetable request processing.
+            </div>
+
+            <div style="margin-top:20px;">
+              <button class="btn btn-green" type="submit">Submit request</button>
+              <button class="btn btn-gray" type="button" onclick="clearRequest()">Clear</button>
+            </div>
+
+            <!-- WCAG error 17: Error message is not associated with invalid fields and has no role=alert. -->
+            <div id="requestResult" class="alert"></div>
+          </form>
+        </section>
+
+        <section class="section">
+          <h2>Exports and notifications</h2>
+          <div class="grid-3">
+            <div class="info-card">
+              <h3>Export</h3>
+              <p>Download your timetable in different formats.</p>
+              <button class="btn btn-purple" onclick="fakeExport('PDF')">PDF</button>
+              <button class="btn btn-purple" onclick="fakeExport('CSV')">CSV</button>
+              <div id="exportMessage" class="alert"></div>
+            </div>
+            <div class="info-card">
+              <h3>Notifications</h3>
+              <!-- WCAG error 18: Radio buttons are not grouped with fieldset and legend. -->
+              <input type="radio" name="notify" style="width:auto;"> All lesson changes<br><br>
+              <input type="radio" name="notify" style="width:auto;"> Only room changes<br><br>
+              <input type="radio" name="notify" style="width:auto;"> No notifications<br><br>
+              <button class="btn btn-green" onclick="saveSettings()">Save</button>
+              <div id="settingsMessage" class="alert"></div>
+            </div>
+            <div class="info-card">
+              <h3>Help center</h3>
+              <!-- WCAG error 19: Clickable span is not keyboard accessible. -->
+              <span class="fake-link" onclick="toggleHelp()">Open help answer</span>
+              <p id="helpAnswer" style="display:none;">Changed lessons are visible in the Changes section and in the lesson detail modal.</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <h3>CampusTime</h3>
+          <p>Demo timetable portal for WCAG testing.</p>
+        </div>
+        <div>
+          <h3>Navigation</h3>
+          <a href="#schedule">Lessons</a>
+          <a href="#calendar">Week board</a>
+          <a href="#rooms">Rooms</a>
+        </div>
+        <div>
+          <h3>Documents</h3>
+          <!-- WCAG error 20: Repeated vague links. -->
+          <a href="#">Open</a>
+          <a href="#">Open</a>
+          <a href="#">Open</a>
+        </div>
+        <div>
+          <h3>Legal</h3>
+          <!-- WCAG error 21: Vague link destination. -->
+          <a href="#">More</a>
+          <a href="#">Read more</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- WCAG error 22: Modal has no role="dialog", no aria-modal and no focus management. -->
+  <div class="modal-bg" id="lessonModal">
+    <div class="modal">
+      <h2 id="modalTitle">Lesson details</h2>
+      <p id="modalText"></p>
+      <button class="btn btn-gray" onclick="closeLesson()">Close</button>
+    </div>
+  </div>
+
+  <!-- WCAG error 23: Help modal also lacks correct dialog semantics and focus trap. -->
+  <div class="modal-bg" id="helpModal">
+    <div class="modal">
+      <h2>Portal help</h2>
+      <p>This timetable portal is a demo system with intentional accessibility problems.</p>
+      <button class="btn btn-gray" onclick="closeHelpModal()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    function showWeekInfo() {
+      document.getElementById('weekInfo').innerText = 'Week 7 contains 18 lessons and 3 room changes.';
+    }
+
+    function filterSchedule() {
+      const search = document.getElementById('courseSearch').value.toLowerCase();
+      const day = document.getElementById('dayFilter').value;
+      const group = document.getElementById('groupFilter').value;
+      const cards = document.querySelectorAll('.lesson-card');
+
+      cards.forEach(card => {
+        const matchesSearch = card.dataset.course.includes(search);
+        const matchesDay = day === 'all' || card.dataset.day === day;
+        const matchesGroup = group === 'all' || card.dataset.group === group;
+        card.style.display = matchesSearch && matchesDay && matchesGroup ? 'grid' : 'none';
+      });
+    }
+
+    function resetSchedule() {
+      document.getElementById('courseSearch').value = '';
+      document.getElementById('dayFilter').value = 'all';
+      document.getElementById('groupFilter').value = 'all';
+      document.querySelectorAll('.lesson-card').forEach(card => card.style.display = 'grid');
+    }
+
+    function openLesson(course, time, room) {
+      document.getElementById('modalTitle').innerText = course;
+      document.getElementById('modalText').innerText = 'Time: ' + time + '. Room: ' + room + '. Please check changed lessons before class.';
+      document.getElementById('lessonModal').style.display = 'flex';
+    }
+
+    function closeLesson() {
+      document.getElementById('lessonModal').style.display = 'none';
+    }
+
+    function openHelpModal() {
+      document.getElementById('helpModal').style.display = 'flex';
+    }
+
+    function closeHelpModal() {
+      document.getElementById('helpModal').style.display = 'none';
+    }
+
+    function bookRoom(room) {
+      const box = document.getElementById('roomMessage');
+      box.style.display = 'block';
+      box.innerText = 'Reservation request for ' + room + ' was created in demo mode.';
+    }
+
+    function showTeacher(name) {
+      const box = document.getElementById('teacherInfo');
+      box.style.display = 'block';
+      box.innerText = name + ' has office hours on Tuesday from 13:00 to 14:00.';
+    }
+
+    function submitRequest(event) {
+      event.preventDefault();
+      const firstName = document.getElementById('firstName').value;
+      const email = document.getElementById('studentEmail').value;
+      const result = document.getElementById('requestResult');
+
+      if (firstName.length < 2 || email.length < 5) {
+        result.style.display = 'block';
+        result.style.background = '#7f1d1d';
+        result.style.borderColor = '#ef4444';
+        result.style.color = '#fee2e2';
+        result.innerText = 'Please complete required information.';
+        return;
+      }
+
+      result.style.display = 'block';
+      result.style.background = '#064e3b';
+      result.style.borderColor = '#10b981';
+      result.style.color = '#d1fae5';
+      result.innerText = 'Your timetable request was submitted successfully.';
+    }
+
+    function clearRequest() {
+      document.querySelectorAll('#request input, #request textarea').forEach(item => {
+        if (item.type === 'checkbox') {
+          item.checked = false;
+        } else {
+          item.value = '';
+        }
+      });
+    }
+
+    function fakeExport(type) {
+      const box = document.getElementById('exportMessage');
+      box.style.display = 'block';
+      box.innerText = 'Timetable would be exported as ' + type + ' in the real portal.';
+    }
+
+    function saveSettings() {
+      const box = document.getElementById('settingsMessage');
+      box.style.display = 'block';
+      box.innerText = 'Notification settings were saved.';
+    }
+
+    function toggleHelp() {
+      const answer = document.getElementById('helpAnswer');
+      answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+    }
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeLesson();
+        closeHelpModal();
+      }
+    });
+
+  </script>
+</body>
+</html>

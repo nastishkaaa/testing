@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Work for Specialists</title>
+  <style>
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      background:#f5f7fb;
+      color:#222;
+      line-height:1.6;
+    }
+
+    .hero{
+      background:#e6ecfb;
+      padding:50px 20px;
+      text-align:center;
+    }
+
+    .hero h3{
+      margin:0 0 10px;
+      font-size:34px;
+      color:#1d45b5;
+    }
+
+    .hero p{
+      max-width:700px;
+      margin:0 auto;
+      font-size:18px;
+    }
+
+    .btn{
+      display:inline-block;
+      margin-top:20px;
+      padding:12px 24px;
+      background:#1d45b5;
+      color:white;
+      text-decoration:none;
+      border-radius:8px;
+      font-weight:bold;
+    }
+
+    .section{
+      max-width:1000px;
+      margin:40px auto;
+      background:white;
+      padding:30px 20px;
+      border-radius:14px;
+      box-shadow:0 4px 14px rgba(0,0,0,0.08);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+      gap:20px;
+      margin-top:20px;
+    }
+
+    .card{
+      background:#f8f9fd;
+      border:1px solid #dfe5f3;
+      border-radius:10px;
+      padding:18px;
+    }
+
+    .card h2{
+      margin-top:0;
+      color:#1d45b5;
+    }
+
+    .job-image{
+      width:100%;
+      max-width:700px;
+      display:block;
+      margin:20px auto;
+      border-radius:12px;
+    }
+
+    form{
+      margin-top:20px;
+      display:grid;
+      gap:14px;
+    }
+
+    input, select, textarea{
+      padding:12px;
+      font-size:16px;
+      border:1px solid #cfd6e6;
+      border-radius:8px;
+      width:100%;
+      box-sizing:border-box;
+    }
+
+    .apply-btn{
+      background:#1d45b5;
+      color:white;
+      border:none;
+      padding:12px 20px;
+      font-size:16px;
+      border-radius:8px;
+      cursor:pointer;
+      width:180px;
+    }
+
+    footer{
+      text-align:center;
+      padding:30px 20px;
+      color:#555;
+      font-size:14px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <h3>Work for Specialists</h3>
+    <p>
+      Join our international team and build digital solutions in a modern IT environment.
+      Explore career opportunities for developers, analysts, testers, and UX professionals.
+    </p>
+    <a href="#apply" class="btn">Apply now</a>
+  </div>
+
+  <div class="section">
+    <h2>Why join us?</h2>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Modern technologies</h2>
+        <p>Work with cloud platforms, enterprise systems, automation tools, and digital services.</p>
+      </div>
+
+      <div class="card">
+        <h2>Career growth</h2>
+        <p>Develop your technical and soft skills through internal learning and real projects.</p>
+      </div>
+
+      <div class="card">
+        <h2>International environment</h2>
+        <p>Collaborate with teams from different countries and contribute to global solutions.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Open position: Junior Accessibility Tester</h2>
+    <p>
+      We are looking for a motivated candidate interested in web accessibility, usability evaluation,
+      and inclusive design. The role includes support in accessibility audits and testing of digital interfaces.
+    </p>
+
+    <h4>Responsibilities</h4>
+    <ul>
+      <li>Support accessibility checks of web interfaces</li>
+      <li>Report usability issues</li>
+      <li>Work with basic testing tools</li>
+      <li>Collaborate with design and development teams</li>
+    </ul>
+  </div>
+
+  <div class="section" id="apply">
+    <h2>Application form</h2>
+    <p>Please fill in the form below to apply for this position.</p>
+
+    <form>
+      <input type="text" placeholder="Full name">
+      <input type="email" id="emailField" placeholder="Email address">
+      <select>
+        <option selected>Choose preferred position</option>
+        <option>Accessibility Tester</option>
+        <option>Frontend Developer</option>
+        <option>UX Designer</option>
+      </select>
+      <textarea rows="5" placeholder="Tell us why you are interested"></textarea>
+      <button type="submit" class="apply-btn">Send application</button>
+    </form>
+  </div>
+
+  <footer>
+    2026 Career Page Demo
+  </footer>
+
+</body>
+</html>
