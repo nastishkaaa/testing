@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test Websites for Accessibility Evaluation</title>
+  <style>
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      background:#f4f6fb;
+      color:#1f2937;
+    }
+
+    .hero{
+      background:linear-gradient(135deg, #1d4ed8, #2563eb);
+      color:white;
+      padding:60px 20px;
+      text-align:center;
+    }
+
+    .hero h1{
+      margin:0 0 14px;
+      font-size:38px;
+    }
+
+    .hero p{
+      max-width:850px;
+      margin:0 auto;
+      font-size:18px;
+      line-height:1.7;
+    }
+
+    .container{
+      max-width:1100px;
+      margin:40px auto;
+      padding:0 20px 40px;
+    }
+
+    .intro{
+      background:white;
+      border-radius:16px;
+      padding:24px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.08);
+      margin-bottom:28px;
+    }
+
+    .intro h2{
+      margin-top:0;
+      color:#1d4ed8;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+      gap:22px;
+    }
+
+    .card{
+      background:white;
+      border-radius:16px;
+      padding:22px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.08);
+      border:1px solid #dbe4f0;
+    }
+
+    .card h3{
+      margin-top:0;
+      margin-bottom:10px;
+      color:#1d4ed8;
+      font-size:22px;
+    }
+
+    .card p{
+      color:#4b5563;
+      line-height:1.7;
+      min-height:110px;
+    }
+
+    .buttons{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:16px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:11px 16px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:bold;
+      font-size:14px;
+      cursor:pointer;
+    }
+
+    .btn-primary{
+      background:#1d4ed8;
+      color:white;
+    }
+
+    .btn-primary:hover{
+      background:#1e40af;
+    }
+
+    .btn-secondary{
+      background:#eef2ff;
+      color:#1d4ed8;
+    }
+
+    .btn-secondary:hover{
+      background:#dbe4ff;
+    }
+
+    .footer{
+      text-align:center;
+      color:#6b7280;
+      font-size:14px;
+      padding:10px 20px 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <h1>Test Websites for Accessibility Evaluation</h1>
+    <p>
+      This page provides access to the test websites created for the practical part of the bachelor thesis.
+      Each website represents a different type of web interface and contains intentionally introduced
+      accessibility and usability issues for evaluation purposes.
+    </p>
+  </div>
+
+  <div class="container">
+    <div class="intro">
+      <h2>About the test websites</h2>
+      <p>
+        The websites below were created as part of the practical research for automated testing,
+        expert evaluation, and user-based accessibility review. Please open each website separately
+        and explore its content, structure, navigation, and interactive elements.
+      </p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Test Website 1</h3>
+        <p>
+          Career and application website with navigation, information sections, and a form-based layout.
+        </p>
+        <div class="buttons">
+          <a class="btn btn-primary" href="test1.html">Open website</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Test Website 2</h3>
+        <p>
+          Student portal with dashboard-style sections, study information, files, timetable, and navigation.
+        </p>
+        <div class="buttons">
+          <a class="btn btn-primary" href="test2.html">Open website</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Test Website 3</h3>
+        <p>
+          Information website focused on scholarships, support, documents, deadlines, and contact information.
+        </p>
+        <div class="buttons">
+          <a class="btn btn-primary" href="test3.html">Open website</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Test Website 4</h3>
+        <p>
+          Registration-oriented website with form elements, user interaction, and information blocks.
+        </p>
+        <div class="buttons">
+          <a class="btn btn-primary" href="test4.html">Open website</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Bachelor thesis test environment · 2026
+  </div>
+
+</body>
+</html>
